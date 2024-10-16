@@ -99,3 +99,96 @@ def chatbot():
                 print("Please type a valid question number or 'other' to see more questions.")
 
 chatbot()
+
+# new code----------------------------------------------------------------------------------------------------------------------
+def chatbot():
+    print("👋 Hello! I'm here to assist you with questions about The Entrepreneurship Network.")
+    print("You can ask me about the company 😊, its services, Pay After Placement, internships, and more.")
+
+    questions = {
+        1: "What is the name of the company?",
+        2: "What products or services does the company 💬 offer?",
+        3: "Where is the company headquartered?",
+        4: "How do I apply for an internship 👈 ?",
+        5: "What is Pay After Placement?",
+        6: "How does Pay After Placement work?",
+        7: "Can I see a list of 📚 courses available for beginners?",
+        8: "Can I choose how long I take to repay?",
+        9: "Who is your target audience or ideal customer?",
+        10: "What are the company’s key values or principles?",
+        11: "What are the main goals for the company in the next few years?",
+        12: "How has the company adapted to market trends?",
+        13: "What internships do you offer ⚡ ?"
+    }
+
+    answers = {
+        1: "The Entrepreneurship 😊 Network",
+        2: "We provide education 🎓, mentorship, training, and knowledge👩‍💻 about AI tools, along with influencer marketing and career-building programs.",
+        3: "Delhi, India",
+        4: "You can apply for internships through our career page 👉 : https://career.entrepreneurshipnetwork.net/",
+        5: "Pay After Placement 💸 (PAP) is a model where students pay tuition fees only after securing a job.",
+        6: "No upfront fees. Repayment starts after securing a job with a minimum salary threshold.",
+        7: "We offer 21 courses. Check them out here👉 : https://ten-official.vercel.app/Courses",
+        8: "The repayment period is usually pre-determined but can vary based on the agreement.",
+        9: "Our target audience includes aspiring entrepreneurs, developers, and students looking to enhance their skills.",
+        10: "Our key values include innovation,⚡ mentorship, and empowering entrepreneurs.",
+        11: "Our goals are to expand services, enhance technology, and strengthen partnerships in the coming years.",
+        12: "We adapt by staying updated with industry trends and evolving our services to meet current needs.",
+        13: "We offer internships in areas such as 💻 Frontend, Android, MERN Stack, Python, and Backend."
+    }
+
+    def display_questions(start, end):
+        for i in range(start, end+1):
+            print(f"{i}. {questions[i]}")
+
+    current_stage = 1
+    while True:
+        if current_stage == 1:
+            print("\nPlease select a question from 1 to 4:")
+            display_questions(1, 4)
+        elif current_stage == 2:
+            print("\nPlease select a question from 5 to 8:")
+            display_questions(5, 8)
+        elif current_stage == 3:
+            print("\nPlease select a question from 9 to 13:")
+            display_questions(9, 13)
+
+        user_input = input("Enter the question number or type 'next' for more questions: ").strip().lower()
+
+        if user_input == "quit":
+            print("Thank you for using the chatbot. Goodbye!")
+            break
+
+        elif user_input == "next":
+            if current_stage < 3:
+                current_stage += 1
+            else:
+                print("You have reached the last set of questions.")
+            continue
+
+        try:
+            question_number = int(user_input)
+            if (current_stage == 1 and 1 <= question_number <= 4) or \
+               (current_stage == 2 and 5 <= question_number <= 8) or \
+               (current_stage == 3 and 9 <= question_number <= 13):
+                print(answers[question_number])
+
+                # Automatically quit after answering a question from 9-13
+                if current_stage == 3 and 9 <= question_number <= 13:
+                    print("You can ask 🤔 questions here.\nHow can I help?")
+                    print("Did that answer help, or are you looking for something else?")
+                    feedback = input("Thank you for your response 😇.\nDid that answer help? (yes/no): ").strip().lower()
+
+                    if feedback == "yes":
+                        print("I'm glad I could help 😎 ")
+                    elif feedback == "no":
+                        print("I'm sorry 😑 to hear that. Let me know if there's anything else I can assist with.")
+
+                    break
+            else:
+                print("Invalid question number for this stage. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a valid question number or type 'next' for more questions.")
+
+chatbot()
+
